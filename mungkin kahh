@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>one question.</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #faf8f6;
+      color: #252321;
+      font-family: "DM Sans", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(90%, 560px);
+      text-align: center;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .small {
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #99918c;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(38px, 9vw, 64px);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .question {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: #9b666c;
+    }
+
+    .message {
+      max-width: 420px;
+      margin: 0 auto 42px;
+      color: #77716d;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+      min-height: 52px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .25s ease;
+    }
+
+    #yes {
+      background: #9b666c;
+      color: white;
+    }
+
+    #yes:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(155, 102, 108, .25);
+    }
+
+    #no {
+      background: transparent;
+      color: #77716d;
+      border: 1px solid #d8d1cd;
+      position: relative;
+    }
+
+    #no:hover {
+      transform: translateY(-2px);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #success {
+      animation: fadeIn .8s ease;
+    }
+
+    #success h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 42px;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    #success p {
+      color: #77716d;
+      line-height: 1.8;
+    }
+
+    .heart {
+      font-size: 35px;
+      margin-bottom: 25px;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 24px;
+      font-size: 11px;
+      color: #b2aaa5;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <section id="question">
+      <div class="small">one question for you</div>
+
+      <h1>
+        So...<br>
+        <span class="question">will you be my girlfriend?</span>
+      </h1>
+
+      <p class="message">
+        I've been thinking about this for a while.
+        I don't really know how to say it perfectly,
+        so I'll just ask you directly.
+      </p>
+
+      <div class="buttons">
+        <button id="yes">yes, i will</button>
+        <button id="no">no</button>
+      </div>
+    </section>
+
+    <section id="success" class="hidden">
+      <div class="heart">♡</div>
+
+      <h2>you said yes.</h2>
+
+      <p>
+        I guess this is where our story<br>
+        officially begins.
+      </p>
+    </section>
+
+  </main>
+
+  <div class="footer">
+    made with a little courage.
+  </div>
+
+  <script>
+    const yesButton = document.getElementById("yes");
+    const noButton = document.getElementById("no");
+
+    const question = document.getElementById("question");
+    const success = document.getElementById("success");
+
+    yesButton.addEventListener("click", () => {
+      question.classList.add("hidden");
+      success.classList.remove("hidden");
+    });
+
+    noButton.addEventListener("click", () => {
+      const messages = [
+        "are you sure?",
+        "really?",
+        "think again.",
+        "you might wanna reconsider.",
+        "one more chance?"
+      ];
+
+      const random =
+        messages[Math.floor(Math.random() * messages.length)];
+
+      noButton.textContent = random;
+    });
+  </script>
+
+</body>
+</html>
